@@ -32,7 +32,7 @@ public class GroupCreationTests {
     }
 
     @Test
-    public void GroupCreationTests() {
+    public void testsGroupCreation() {
 
         gotoGroupPage();
         initGroupCreation();
