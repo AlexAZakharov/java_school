@@ -39,4 +39,12 @@ public class ContactsHelper extends HelperBase {
     public void gotoHomePage() {
         click(By.linkText("home page"));
     }
+
+    public void initContactsModification() {
+       click(By.xpath(".//*[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+    }
+
+    public void submitContactsModification() {
+        click(By.xpath(".//*[@name='update']"));
+    }
 }
