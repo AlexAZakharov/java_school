@@ -47,4 +47,13 @@ public class ContactsHelper extends HelperBase {
     public void submitContactsModification() {
         click(By.xpath(".//*[@name='update']"));
     }
+
+    public void addtoGroup() {
+        click(By.xpath(".//input[@name='add']"));
+    }
+
+    public void gotoGroup() {
+        click(By.xpath(".//*[@id='content']/div/i/a"));
+    }
+
 }
