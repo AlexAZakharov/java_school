@@ -1,8 +1,10 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactsDate;
 
 public class ContactsHelper extends HelperBase {
@@ -11,7 +13,7 @@ public class ContactsHelper extends HelperBase {
         super(wd);
     }
 
-    public void fillContactsForm(ContactsDate contactsDate) {
+    public void fillContactsForm(ContactsDate contactsDate, boolean creation) {
         type(By.name("firstname"),contactsDate.getFirstname());
         type(By.name("middlename"),contactsDate.getMiddlename());
         type(By.name("lastname"),contactsDate.getLastname());
@@ -21,10 +23,16 @@ public class ContactsHelper extends HelperBase {
         type(By.name("home"),contactsDate.getHome());
         type(By.name("email"),contactsDate.getEmail());
         type(By.name("address2"),contactsDate.getAddress2());
-        click(By.xpath("//div[@id='content']/form/input[21]"));
+        if (creation){
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactsDate.getGroup());
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }
+
+
     }
 
-    public void addContacts() {
+    public void initContactCreation() {
         click(By.linkText("add new"));
     }
 
@@ -57,4 +65,7 @@ public class ContactsHelper extends HelperBase {
         click(By.xpath(".//*[@id='content']/div/i/a"));
     }
 
+    public void submitContactsCreation() {
+        click(By.xpath("//div[@id='content']/form/input[21]"));
+    }
 }
