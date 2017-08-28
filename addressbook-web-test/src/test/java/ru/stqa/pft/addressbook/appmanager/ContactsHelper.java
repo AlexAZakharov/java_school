@@ -68,4 +68,15 @@ public class ContactsHelper extends HelperBase {
     public void submitContactsCreation() {
         click(By.xpath("//div[@id='content']/form/input[21]"));
     }
+
+    public void createContact(ContactsDate contacts, boolean b) {
+        initContactCreation();
+        fillContactsForm(contacts,b);
+        submitContactsCreation();
+        gotoHomePage();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.xpath(".//*[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+    }
 }
