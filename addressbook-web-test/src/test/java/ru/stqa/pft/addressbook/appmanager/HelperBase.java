@@ -5,6 +5,7 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 
 //import java.util.NoSuchElementException;
 
@@ -44,6 +45,15 @@ public class HelperBase {
             wd.findElement(locator);
             return true;
         } catch (NoSuchElementException ex){
+            return false;
+        }
+    }
+
+    protected boolean isElementSelectTextPresent(By locator, String group) {
+        try {
+            new Select(wd.findElement(locator)).selectByVisibleText(group);
+            return true;
+        } catch (NoSuchElementException ex1){
             return false;
         }
     }

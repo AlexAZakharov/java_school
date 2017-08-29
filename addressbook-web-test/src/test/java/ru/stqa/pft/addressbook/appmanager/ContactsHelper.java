@@ -2,18 +2,34 @@ package ru.stqa.pft.addressbook.appmanager;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactsDate;
+import ru.stqa.pft.addressbook.model.GroupDate;
 
 public class ContactsHelper extends HelperBase {
 
     public ContactsHelper(WebDriver wd) {
         super(wd);
     }
+    private  GroupHelper gh =new GroupHelper(wd);
+    private  NavigationHelper nh =new NavigationHelper(wd);
 
     public void fillContactsForm(ContactsDate contactsDate, boolean creation) {
+        if (creation){
+            if(isElementSelectTextPresent(By.name("new_group"),contactsDate.getGroup())){
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactsDate.getGroup());
+            } else {
+                nh.gotoGroupPage();
+                gh.createGroup(new GroupDate("test1", null, "test3"));
+                initContactCreation();
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactsDate.getGroup());
+            };
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }
         type(By.name("firstname"),contactsDate.getFirstname());
         type(By.name("middlename"),contactsDate.getMiddlename());
         type(By.name("lastname"),contactsDate.getLastname());
@@ -23,13 +39,6 @@ public class ContactsHelper extends HelperBase {
         type(By.name("home"),contactsDate.getHome());
         type(By.name("email"),contactsDate.getEmail());
         type(By.name("address2"),contactsDate.getAddress2());
-        if (creation){
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactsDate.getGroup());
-        } else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
-
-
     }
 
     public void initContactCreation() {
@@ -79,4 +88,5 @@ public class ContactsHelper extends HelperBase {
     public boolean isThereAContact() {
         return isElementPresent(By.xpath(".//*[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
+
 }
