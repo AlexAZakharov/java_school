@@ -51,6 +51,10 @@ public class GroupHelper extends HelperBase {
         submitGroupCreation();
         returnToGroupPage();
     }
+    public boolean groupExists(String groupName) {
+        click(By.linkText("home"));
+        return isElementSelectTextPresent(By.name("to_group"), groupName);
+    }
 
     public boolean isThereAGroup() {
         return isElementPresent(By.xpath(".//*[@id='content']/form/span[1]/input"));

@@ -19,14 +19,7 @@ public class ContactsHelper extends HelperBase {
 
     public void fillContactsForm(ContactsDate contactsDate, boolean creation) {
         if (creation){
-            if(isElementSelectTextPresent(By.name("new_group"),contactsDate.getGroup())){
-                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactsDate.getGroup());
-            } else {
-                nh.gotoGroupPage();
-                gh.createGroup(new GroupDate("test1", null, "test3"));
-                initContactCreation();
-                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactsDate.getGroup());
-            };
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactsDate.getGroup());
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
