@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupDate;
 
+import java.util.List;
+
 public class GroupDeleteTests extends TestBase {
 
     @Test
@@ -12,12 +14,12 @@ public class GroupDeleteTests extends TestBase {
         if (! app.getGroupHelper().isThereAGroup()){
             app.getGroupHelper().createGroup(new GroupDate("test1", null, "test3"));
         }
-        int before = app.getGroupHelper().getGroupCiunt();
-        app.getGroupHelper().selectGroup(before-1);
+        List<GroupDate> before = app.getGroupHelper().getGroupList();
+        app.getGroupHelper().selectGroup(before.size()-1);
         app.getGroupHelper().deleteGroup();
         app.getGroupHelper().returnToGroupPage();
-        int after = app.getGroupHelper().getGroupCiunt();
+        List<GroupDate> after = app.getGroupHelper().getGroupList();
 
-        Assert.assertEquals(after,before-1);
+        Assert.assertEquals(after.size(),before.size()-1);
     }
 }
