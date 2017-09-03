@@ -59,4 +59,8 @@ public class GroupHelper extends HelperBase {
     public boolean isThereAGroup() {
         return isElementPresent(By.xpath(".//*[@id='content']/form/span[1]/input"));
     }
+
+    public int getGroupCiunt() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
 }
