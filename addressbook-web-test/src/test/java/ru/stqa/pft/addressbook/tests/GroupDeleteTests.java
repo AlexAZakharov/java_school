@@ -10,14 +10,15 @@ public class GroupDeleteTests extends TestBase {
     public void testsGroupDelete() {
         app.getNavigationHelper().gotoGroupPage();
         int before = app.getGroupHelper().getGroupCiunt();
+        if (before == 0){before=1;}
         if (! app.getGroupHelper().isThereAGroup()){
             app.getGroupHelper().createGroup(new GroupDate("test1", null, "test3"));
         }
-        app.getGroupHelper().selectGroup();
+        app.getGroupHelper().selectGroup(before-1);
         app.getGroupHelper().deleteGroup();
         app.getGroupHelper().returnToGroupPage();
         int after = app.getGroupHelper().getGroupCiunt();
-        if (before == 0){before=1;}
+
         Assert.assertEquals(after,before-1);
     }
 }

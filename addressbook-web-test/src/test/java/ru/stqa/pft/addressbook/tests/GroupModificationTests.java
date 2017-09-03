@@ -10,16 +10,17 @@ public class GroupModificationTests extends TestBase {
     public void testsGroupModificarion() {
         app.getNavigationHelper().gotoGroupPage();
         int before = app.getGroupHelper().getGroupCiunt();
+        if (before == 0){before=1;}
         if (! app.getGroupHelper().isThereAGroup()){
             app.getGroupHelper().createGroup(new GroupDate("test1", null, "test3"));
         }
-        app.getGroupHelper().selectGroup();
+        app.getGroupHelper().selectGroup(before-1);
         app.getGroupHelper().initGroupModofocation();
         app.getGroupHelper().fillGroupForm(new GroupDate("test5", "test6", "test7"));
         app.getGroupHelper().submitGorupModification();
         app.getGroupHelper().returnToGroupPage();
         int after = app.getGroupHelper().getGroupCiunt();
-        if (before == 0){before=1;}
+
         Assert.assertEquals(after,before);
     }
 }

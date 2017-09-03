@@ -38,8 +38,8 @@ public class ContactsHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-    public void selectContacts() {
-        click(By.xpath(".//tr[@name='entry'][1]/td[@class='center']/input"));
+    public void selectContacts(int index) {
+        wd.findElements(By.xpath(".//*[@name='selected[]']")).get(index).click();
     }
 
     public void deleteSelectedContacts() {
@@ -51,8 +51,8 @@ public class ContactsHelper extends HelperBase {
         click(By.linkText("home page"));
     }
 
-    public void initContactsModification() {
-       click(By.xpath(".//*[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+    public void initContactsModification(int index){
+        wd.findElements(By.xpath(".//*[@title='Edit']")).get(index).click();
     }
 
     public void submitContactsModification() {
