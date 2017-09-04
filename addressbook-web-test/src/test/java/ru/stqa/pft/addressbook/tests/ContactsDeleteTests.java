@@ -20,5 +20,8 @@ public class ContactsDeleteTests extends TestBase {
       app.getContactsHelper().deleteSelectedContacts();
       List<ContactsDate> after = app.getContactsHelper().getContactList();
       Assert.assertEquals(after.size(),before.size()-1);
+
+      before.remove(before.size()-1);
+      Assert.assertEquals(before,after);
     }
 }
