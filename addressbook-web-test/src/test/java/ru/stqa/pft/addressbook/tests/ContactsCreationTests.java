@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactsDate;
 import ru.stqa.pft.addressbook.model.GroupDate;
 
+import java.util.List;
+
 public class ContactsCreationTests extends TestBase {
 
     @Test
@@ -16,19 +18,17 @@ public class ContactsCreationTests extends TestBase {
 
         GroupDate gd=new GroupDate("test1", null, "test3");
 
-        int before = app.getContactsHelper().getContactCount();
-
         if (! app.getGroupHelper().groupExists(gd.getName())) {
             app.getNavigationHelper().gotoGroupPage();
             app.getGroupHelper().createGroup(gd);
         }
-
+        List<ContactsDate> before = app.getContactsHelper().getContactList();
         app.getContactsHelper().initContactCreation();
         app.getContactsHelper().fillContactsForm(cd,true);
         app.getContactsHelper().submitContactsCreation();
         app.getContactsHelper().gotoHomePage();
-        int after = app.getContactsHelper().getContactCount();
-        Assert.assertEquals(after,before+1);
+        List<ContactsDate> after = app.getContactsHelper().getContactList();
+        Assert.assertEquals(after.size(),before.size()+1);
     }
 
 
