@@ -1,25 +1,25 @@
 package ru.stqa.pft.addressbook.model;
 
 public class GroupDate {
-    private final String id;
+    private int id;
     private final String name;
     private final String header;
     private final String footer;
 
     public GroupDate(String name, String header, String footer) {
-        this.id = null;
+        this.id = 0;
         this.name = name;
         this.header = header;
         this.footer = footer;
     }
-    public GroupDate(String id,String name, String header, String footer) {
+    public GroupDate(int id,String name, String header, String footer) {
         this.id = id;
         this.name = name;
         this.header = header;
         this.footer = footer;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -35,6 +35,10 @@ public class GroupDate {
         return footer;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,13 +46,13 @@ public class GroupDate {
 
         GroupDate groupDate = (GroupDate) o;
 
-        if (id != null ? !id.equals(groupDate.id) : groupDate.id != null) return false;
+        if (id != groupDate.id) return false;
         return name != null ? name.equals(groupDate.name) : groupDate.name == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

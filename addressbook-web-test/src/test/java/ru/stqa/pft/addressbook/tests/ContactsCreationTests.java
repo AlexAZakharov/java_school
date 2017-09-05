@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactsDate;
 import ru.stqa.pft.addressbook.model.GroupDate;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class ContactsCreationTests extends TestBase {
@@ -29,6 +30,10 @@ public class ContactsCreationTests extends TestBase {
         app.getContactsHelper().gotoHomePage();
         List<ContactsDate> after = app.getContactsHelper().getContactList();
         Assert.assertEquals(after.size(),before.size()+1);
+
+        cd.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(),o2.getId())).get().getId());
+        before.add(cd);
+        Assert.assertEquals(new HashSet<Object>(after),new HashSet<Object>(before));
     }
 
 
