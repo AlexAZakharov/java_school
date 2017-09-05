@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactsDate {
+    private final String id;
     private final String middlename;
     private final String lastname;
     private final String nickname;
@@ -12,7 +13,8 @@ public class ContactsDate {
     private final String address2;
     private String group;
 
-    public ContactsDate(String middlename, String lastname, String nickname, String firstname, String company, String address, String home, String email, String address2, String group) {
+    public ContactsDate(String id, String middlename, String lastname, String nickname, String firstname, String company, String address, String home, String email, String address2, String group) {
+        this.id= id;
         this.middlename = middlename;
         this.lastname = lastname;
         this.nickname = nickname;
@@ -23,6 +25,23 @@ public class ContactsDate {
         this.email = email;
         this.address2 = address2;
         this.group = group;
+    }
+    public ContactsDate( String middlename, String lastname, String nickname, String firstname, String company, String address, String home, String email, String address2, String group) {
+        this.id= null;
+        this.middlename = middlename;
+        this.lastname = lastname;
+        this.nickname = nickname;
+        this.firstname = firstname;
+        this.company = company;
+        this.address = address;
+        this.home = home;
+        this.email = email;
+        this.address2 = address2;
+        this.group = group;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getMiddlename() {
@@ -66,28 +85,32 @@ public class ContactsDate {
     }
 
     @Override
-    public String toString() {
-        return "ContactsDate{" +
-                "lastname='" + lastname + '\'' +
-                ", firstname='" + firstname + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         ContactsDate that = (ContactsDate) o;
 
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
         return firstname != null ? firstname.equals(that.firstname) : that.firstname == null;
     }
 
     @Override
     public int hashCode() {
-        int result = lastname != null ? lastname.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "ContactsDate{" +
+                "id='" + id + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", firstname='" + firstname + '\'' +
+                '}';
+    }
+
 }
