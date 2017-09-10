@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class NavigationHelper extends HelperBase {
 
@@ -21,7 +22,9 @@ public class NavigationHelper extends HelperBase {
 
     public void gotoHomePage() {
         if (isElementPresent(By.xpath("//table[@id='maintable']"))){
-            return;
+            if (isElementPresent(By.xpath(".//input[@name='remove']"))) {
+                new Select(wd.findElement(By.xpath(".//select[@name='group']"))).selectByVisibleText("[all]");
+            }   else return;
         }
         click(By.linkText("home"));
     }
