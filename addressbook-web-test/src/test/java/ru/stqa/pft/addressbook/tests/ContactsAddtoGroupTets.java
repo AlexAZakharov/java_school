@@ -6,10 +6,10 @@ public class ContactsAddtoGroupTets extends TestBase {
 
     @Test
     public void testContacttsAddtoGroup (){
-        app.getNavigationHelper().gotoHomePage();
-        app.getContactsHelper().selectContacts(0);
-        app.getContactsHelper().addtoGroup();
-        app.getContactsHelper().gotoGroup();
-        app.getNavigationHelper().gotoHomePage();
+        app.goTo().homePage();
+        app.contacts().select(0);
+        app.contacts().addtoGroup();
+        app.contacts().gotoGroup();
+        app.goTo().homePage();
     }
 }

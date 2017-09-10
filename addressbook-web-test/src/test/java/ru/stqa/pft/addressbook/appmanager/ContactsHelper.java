@@ -2,13 +2,10 @@ package ru.stqa.pft.addressbook.appmanager;
 
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactsDate;
-import ru.stqa.pft.addressbook.model.GroupDate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +18,7 @@ public class ContactsHelper extends HelperBase {
     private  GroupHelper gh =new GroupHelper(wd);
     private  NavigationHelper nh =new NavigationHelper(wd);
 
-    public void fillContactsForm(ContactsDate contactsDate, boolean creation) {
+    public void fillForm(ContactsDate contactsDate, boolean creation) {
         if (creation){
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactsDate.getGroup());
         } else {
@@ -38,15 +35,15 @@ public class ContactsHelper extends HelperBase {
         type(By.name("address2"),contactsDate.getAddress2());
     }
 
-    public void initContactCreation() {
+    public void creation() {
         click(By.linkText("add new"));
     }
 
-    public void selectContacts(int index) {
+    public void select(int index) {
         wd.findElements(By.xpath(".//*[@name='selected[]']")).get(index).click();
     }
 
-    public void deleteSelectedContacts() {
+    public void delete() {
         click(By.xpath(".//input[@value='Delete']"));
         wd.switchTo().alert().accept();
     }
@@ -55,11 +52,11 @@ public class ContactsHelper extends HelperBase {
         click(By.linkText("home page"));
     }
 
-    public void initContactsModification(int index){
+    public void initModification(int index){
         wd.findElements(By.xpath(".//*[@title='Edit']")).get(index).click();
     }
 
-    public void submitContactsModification() {
+    public void submitModification() {
         click(By.xpath(".//*[@name='update']"));
     }
 
@@ -71,14 +68,14 @@ public class ContactsHelper extends HelperBase {
         click(By.xpath(".//*[@id='content']/div/i/a"));
     }
 
-    public void submitContactsCreation() {
+    public void submitCreation() {
         click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
     public void createContact(ContactsDate contacts, boolean b) {
-        initContactCreation();
-        fillContactsForm(contacts,b);
-        submitContactsCreation();
+        creation();
+        fillForm(contacts,b);
+        submitCreation();
         gotoHomePage();
     }
 
@@ -90,7 +87,7 @@ public class ContactsHelper extends HelperBase {
         return wd.findElements(By.xpath(".//*[@name='selected[]']")).size();
     }
 
-    public List<ContactsDate> getContactList() {
+    public List<ContactsDate> list() {
        List<ContactsDate> contacts = new ArrayList<ContactsDate>();
        List<WebElement> elements = wd.findElements(By.xpath(".//tr[@name='entry']"));
        for (WebElement element: elements){

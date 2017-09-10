@@ -14,11 +14,11 @@ public class ContactsCreationTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions(){
-        app.getNavigationHelper().gotoHomePage();
+        app.goTo().homePage();
         GroupDate gd=new GroupDate("test1", null, "test3");
-        if (! app.getGroupHelper().groupExists(gd.getName())) {
-            app.getNavigationHelper().gotoGroupPage();
-            app.getGroupHelper().createGroup(gd);
+        if (! app.group().groupExists(gd.getName())) {
+            app.goTo().groupPage();
+            app.group().create(gd);
         }
 
     }
@@ -27,12 +27,12 @@ public class ContactsCreationTests extends TestBase {
 
         ContactsDate cd= new ContactsDate("A", "Alexandr", "WaveLW", "Bobrov", "Company", "address", null, "e-mail@mail.ru", "address","test1");
 
-        List<ContactsDate> before = app.getContactsHelper().getContactList();
-        app.getContactsHelper().initContactCreation();
-        app.getContactsHelper().fillContactsForm(cd,true);
-        app.getContactsHelper().submitContactsCreation();
-        app.getContactsHelper().gotoHomePage();
-        List<ContactsDate> after = app.getContactsHelper().getContactList();
+        List<ContactsDate> before = app.contacts().list();
+        app.contacts().creation();
+        app.contacts().fillForm(cd,true);
+        app.contacts().submitCreation();
+        app.contacts().gotoHomePage();
+        List<ContactsDate> after = app.contacts().list();
         Assert.assertEquals(after.size(),before.size()+1);
 
         cd.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(),o2.getId())).get().getId());

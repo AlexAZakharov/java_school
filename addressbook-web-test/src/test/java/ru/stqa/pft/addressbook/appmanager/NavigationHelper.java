@@ -11,7 +11,7 @@ public class NavigationHelper extends HelperBase {
         super(wd);
     }
 
-    public void gotoGroupPage() {
+    public void groupPage() {
         if (isElementPresent(By.tagName("h1")) && wd.findElement(By.tagName("h1")).getText().equals("Group")
                 && isElementPresent((By.name("new")))){
             return;
@@ -20,7 +20,7 @@ public class NavigationHelper extends HelperBase {
     }
 
 
-    public void gotoHomePage() {
+    public void homePage() {
         if (isElementPresent(By.xpath("//table[@id='maintable']"))){
             if (isElementPresent(By.xpath(".//input[@name='remove']"))) {
                 new Select(wd.findElement(By.xpath(".//select[@name='group']"))).selectByVisibleText("[all]");

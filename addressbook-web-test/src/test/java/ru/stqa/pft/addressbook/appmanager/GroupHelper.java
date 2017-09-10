@@ -3,7 +3,6 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.GroupDate;
 
 import java.util.ArrayList;
@@ -33,11 +32,11 @@ public class GroupHelper extends HelperBase {
         click(By.xpath("//div[@id='content']/form/input[4]"));
     }
 
-    public void selectGroup(int index) {
+    public void select(int index) {
         wd.findElements(By.name("selected[]")).get(index).click();
     }
 
-    public void deleteGroup() {
+    public void delete() {
         click(By.xpath(".//*[@name='delete']"));
     }
 
@@ -49,15 +48,15 @@ public class GroupHelper extends HelperBase {
         click(By.xpath(".//*[@name='update']"));
     }
 
-    public void createGroup(GroupDate group) {
+    public void create(GroupDate group) {
         initGroupCreation();
         fillGroupForm(group);
         submitGroupCreation();
         returnToGroupPage();
     }
 
-    public void modifyGroup(int index, GroupDate group) {
-        selectGroup(index);
+    public void modify(int index, GroupDate group) {
+        select(index);
         initGroupModofocation();
         fillGroupForm(group);
         submitGorupModification();
@@ -77,7 +76,7 @@ public class GroupHelper extends HelperBase {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<GroupDate> getGroupList() {
+    public List<GroupDate> list() {
         List<GroupDate> groups = new ArrayList<GroupDate>();
         List<WebElement> elements = wd.findElements(By.xpath(".//span[@class='group']"));
         for (WebElement element : elements){
