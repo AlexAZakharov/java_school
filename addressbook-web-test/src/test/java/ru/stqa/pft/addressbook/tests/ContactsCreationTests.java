@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook.tests;
 
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactsDate;
 import ru.stqa.pft.addressbook.model.GroupDate;
@@ -11,18 +12,21 @@ import java.util.List;
 
 public class ContactsCreationTests extends TestBase {
 
-    @Test
-    public void testContactsCreation() {
-
+    @BeforeMethod
+    public void ensurePreconditions(){
         app.getNavigationHelper().gotoHomePage();
-        ContactsDate cd= new ContactsDate("A", "Alexandr", "WaveLW", "Bobrov", "Company", "address", null, "e-mail@mail.ru", "address","test1");
-
         GroupDate gd=new GroupDate("test1", null, "test3");
-
         if (! app.getGroupHelper().groupExists(gd.getName())) {
             app.getNavigationHelper().gotoGroupPage();
             app.getGroupHelper().createGroup(gd);
         }
+
+    }
+    @Test
+    public void testContactsCreation() {
+
+        ContactsDate cd= new ContactsDate("A", "Alexandr", "WaveLW", "Bobrov", "Company", "address", null, "e-mail@mail.ru", "address","test1");
+
         List<ContactsDate> before = app.getContactsHelper().getContactList();
         app.getContactsHelper().initContactCreation();
         app.getContactsHelper().fillContactsForm(cd,true);

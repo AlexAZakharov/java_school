@@ -55,6 +55,15 @@ public class GroupHelper extends HelperBase {
         submitGroupCreation();
         returnToGroupPage();
     }
+
+    public void modifyGroup(int index, GroupDate group) {
+        selectGroup(index);
+        initGroupModofocation();
+        fillGroupForm(group);
+        submitGorupModification();
+        returnToGroupPage();
+    }
+
     public boolean groupExists(String groupName) {
         click(By.linkText("home"));
         return isElementSelectTextPresent(By.name("to_group"), groupName);
