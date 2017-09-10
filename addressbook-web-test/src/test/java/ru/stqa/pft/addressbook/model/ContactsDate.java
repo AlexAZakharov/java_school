@@ -1,47 +1,70 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactsDate {
-    private int id;
-    private final String middlename;
-    private final String lastname;
-    private final String nickname;
-    private final String firstname;
-    private final String company;
-    private final String address;
-    private final String home;
-    private final String email;
-    private final String address2;
+    private int id= 0;
+    private String middlename;
+    private String lastname;
+    private String nickname;
+    private String firstname;
+    private String company;
+    private String address;
+    private String home;
+    private String email;
+    private String address2;
     private String group;
 
-    public ContactsDate(int id, String middlename, String lastname, String nickname, String firstname, String company, String address, String home, String email, String address2, String group) {
-        this.id= id;
-        this.middlename = middlename;
-        this.lastname = lastname;
-        this.nickname = nickname;
-        this.firstname = firstname;
-        this.company = company;
-        this.address = address;
-        this.home = home;
-        this.email = email;
-        this.address2 = address2;
-        this.group = group;
+    public ContactsDate withId(int id) {
+        this.id = id;
+        return this;
     }
-    public ContactsDate( String middlename, String lastname, String nickname, String firstname, String company, String address, String home, String email, String address2, String group) {
-        this.id= 0;
+    public ContactsDate withMiddlename(String middlename) {
         this.middlename = middlename;
-        this.lastname = lastname;
-        this.nickname = nickname;
-        this.firstname = firstname;
-        this.company = company;
-        this.address = address;
-        this.home = home;
-        this.email = email;
-        this.address2 = address2;
-        this.group = group;
+        return this;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public ContactsDate withLastname(String lastname) {
+        this.lastname = lastname;
+        return this;
+    }
+
+    public ContactsDate withNickname(String nickname) {
+        this.nickname = nickname;
+        return this;
+    }
+
+    public ContactsDate withFirstname(String firstname) {
+        this.firstname = firstname;
+        return this;
+    }
+
+    public ContactsDate withCompany(String company) {
+        this.company = company;
+        return this;
+    }
+
+    public ContactsDate withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public ContactsDate withHome(String home) {
+        this.home = home;
+        return this;
+    }
+
+    public ContactsDate withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public ContactsDate withAddress2(String address2) {
+        this.address2 = address2;
+        return this;
+    }
+
+    public ContactsDate withGroup(String group) {
+        this.group = group;
+        return this;
     }
 
     public int getId() {

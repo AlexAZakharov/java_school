@@ -25,7 +25,10 @@ public class ContactsCreationTests extends TestBase {
     @Test
     public void testContactsCreation() {
 
-        ContactsDate cd= new ContactsDate("A", "Alexandr", "WaveLW", "Bobrov", "Company", "address", null, "e-mail@mail.ru", "address","test1");
+        ContactsDate cd= new ContactsDate()
+                .withMiddlename("A").withLastname("Alexandr").withNickname("WaveLW").withFirstname("Bobrov")
+                .withCompany("Company").withAddress("address").withEmail("e-mail@mail.ru")
+                .withAddress2("address").withGroup("test1");
 
         List<ContactsDate> before = app.contacts().list();
         app.contacts().creation();
@@ -35,7 +38,7 @@ public class ContactsCreationTests extends TestBase {
         List<ContactsDate> after = app.contacts().list();
         Assert.assertEquals(after.size(),before.size()+1);
 
-        cd.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(),o2.getId())).get().getId());
+        cd.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(),o2.getId())).get().getId());
         before.add(cd);
         Assert.assertEquals(new HashSet<Object>(after),new HashSet<Object>(before));
     }

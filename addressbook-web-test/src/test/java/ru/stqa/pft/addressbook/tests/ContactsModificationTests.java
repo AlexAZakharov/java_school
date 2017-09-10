@@ -14,7 +14,10 @@ public class ContactsModificationTests extends TestBase {
     public void ensurePreconditions(){
         app.goTo().homePage();
         if (! app.contacts().isThereAContact()){
-            app.contacts().createContact(new ContactsDate("A", "Ivan", "WaveLW", "Bobrov", "Company", "address", null, "e-mail@mail.ru", "address","test1"),false);
+            app.contacts().createContact(new ContactsDate()
+                    .withMiddlename("A").withLastname("Ivan").withNickname("WaveLW").withFirstname("Bobrov")
+                    .withCompany("Company").withAddress("address").withEmail("e-mail@mail.ru")
+                    .withAddress2("address").withGroup("test1"),false);
         }
     }
 
@@ -22,7 +25,11 @@ public class ContactsModificationTests extends TestBase {
     public void testContactModification() {
 
         List<ContactsDate> before = app.contacts().list();
-        ContactsDate contact = new ContactsDate(before.get(before.size()-1).getId(),"A1", "Alexandr", "WaveLW", "Zakharov", "Company1", "address2", "Home1", "e-mail@mail.ru", "address3", null);
+        ContactsDate contact = new ContactsDate()
+                .withId(before.get(before.size()-1).getId())
+                .withMiddlename("A1").withLastname("Alexandr").withNickname("WaveLW").withFirstname("Zakharov")
+                .withCompany("Company1").withAddress("address2").withEmail("e-mail@mail.ru")
+                .withAddress2("address3").withGroup("test1").withHome("Home1");
         int index = before.size()-1;
         app.contacts().initModification(index);
         app.contacts().fillForm(contact,false);
