@@ -15,7 +15,7 @@ public class ContactsCreationTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions(){
         app.goTo().homePage();
-        GroupDate gd=new GroupDate("test1", null, "test3");
+        GroupDate gd=new GroupDate().withName("test1").withHeader("test3");
         if (! app.group().groupExists(gd.getName())) {
             app.goTo().groupPage();
             app.group().create(gd);

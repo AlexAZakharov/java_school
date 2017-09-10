@@ -13,7 +13,7 @@ public class GroupDeleteTests extends TestBase {
     public void ensurePreconditions(){
         app.goTo().groupPage();
         if (! app.group().isThereAGroup()){
-            app.group().create(new GroupDate("test1", null, "test3"));
+            app.group().create(new GroupDate().withName("test1").withHeader("test3"));
         }
     }
 
