@@ -6,27 +6,23 @@ import ru.stqa.pft.addressbook.model.GroupDate;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class GroupCreationTests extends TestBase {
 
     @Test
     public void testsGroupCreation() {
         app.goTo().groupPage();
-        List<GroupDate> before = app.group().list();
+        Set<GroupDate> before = app.group().all();
 
         GroupDate gd = new GroupDate().withName("test1").withHeader("test3");
 
         app.group().create(gd);
-        List<GroupDate> after = app.group().list();
+        Set<GroupDate> after = app.group().all();
         Assert.assertEquals(after.size(),before.size()+1);
 
-      //  gd.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(),o2.getId())).get().getId());
+        gd.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt());
         before.add(gd);
-
-        Comparator<? super GroupDate> byId = (g1,g2)-> Integer.compare(g1.getId(),g2.getId());
-        before.sort(byId);
-        after.sort(byId);
-      //  Assert.assertEquals(new HashSet<Object>(after),new HashSet<Object>(before));
         Assert.assertEquals(after,before);
     }
 
