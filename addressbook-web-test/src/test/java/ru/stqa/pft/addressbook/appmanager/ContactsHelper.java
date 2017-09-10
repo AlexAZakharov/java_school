@@ -8,7 +8,9 @@ import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactsDate;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactsHelper extends HelperBase {
 
@@ -42,7 +44,13 @@ public class ContactsHelper extends HelperBase {
     public void select(int index) {
         wd.findElements(By.xpath(".//*[@name='selected[]']")).get(index).click();
     }
+    public void selectContactById(ContactsDate contact) {
+        wd.findElement(By.xpath(".//input[@value='"+contact.getId()+"']")).click();
+    }
 
+    public void initModification(ContactsDate contact){
+        wd.findElement(By.xpath(".//a[@href='edit.php?id="+contact.getId()+"']")).click();
+    }
     public void delete() {
         click(By.xpath(".//input[@value='Delete']"));
         wd.switchTo().alert().accept();
@@ -52,9 +60,9 @@ public class ContactsHelper extends HelperBase {
         click(By.linkText("home page"));
     }
 
-    public void initModification(int index){
+    /*public void initModification(int index){
         wd.findElements(By.xpath(".//*[@title='Edit']")).get(index).click();
-    }
+    }*/
 
     public void submitModification() {
         click(By.xpath(".//*[@name='update']"));
@@ -101,4 +109,20 @@ public class ContactsHelper extends HelperBase {
         }
         return contacts;
     }
+
+    public Set<ContactsDate> all() {
+        Set<ContactsDate> contacts = new HashSet<>();
+        List<WebElement> elements = wd.findElements(By.xpath(".//tr[@name='entry']"));
+        for (WebElement element: elements){
+            List<WebElement> cells =element.findElements(By.tagName("td"));
+            String firstname =  cells.get(2).getText();
+            String lastname = cells.get(1).getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            ContactsDate contact = new ContactsDate()
+                    .withId(id).withLastname(lastname).withFirstname(firstname);
+            contacts.add(contact);
+        }
+        return contacts;
+    }
+
 }

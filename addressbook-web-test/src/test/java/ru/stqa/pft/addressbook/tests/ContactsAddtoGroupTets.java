@@ -7,9 +7,9 @@ public class ContactsAddtoGroupTets extends TestBase {
     @Test
     public void testContacttsAddtoGroup (){
         app.goTo().homePage();
-        app.contacts().select(0);
-        app.contacts().addtoGroup();
-        app.contacts().gotoGroup();
+        app.contact().select(0);
+        app.contact().addtoGroup();
+        app.contact().gotoGroup();
         app.goTo().homePage();
     }
 }

@@ -7,8 +7,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactsDate;
 import ru.stqa.pft.addressbook.model.GroupDate;
 
-import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
 
 public class ContactsCreationTests extends TestBase {
 
@@ -30,17 +29,17 @@ public class ContactsCreationTests extends TestBase {
                 .withCompany("Company").withAddress("address").withEmail("e-mail@mail.ru")
                 .withAddress2("address").withGroup("test1");
 
-        List<ContactsDate> before = app.contacts().list();
-        app.contacts().creation();
-        app.contacts().fillForm(cd,true);
-        app.contacts().submitCreation();
-        app.contacts().gotoHomePage();
-        List<ContactsDate> after = app.contacts().list();
+        Set<ContactsDate> before = app.contact().all();
+        app.contact().creation();
+        app.contact().fillForm(cd,true);
+        app.contact().submitCreation();
+        app.contact().gotoHomePage();
+        Set<ContactsDate> after = app.contact().all();
         Assert.assertEquals(after.size(),before.size()+1);
 
-        cd.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(),o2.getId())).get().getId());
+        cd.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt());
         before.add(cd);
-        Assert.assertEquals(new HashSet<Object>(after),new HashSet<Object>(before));
+        Assert.assertEquals(after,before);
     }
 
 
