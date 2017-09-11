@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.ContactsDate;
 
 import java.util.ArrayList;
@@ -110,8 +111,8 @@ public class ContactsHelper extends HelperBase {
         return contacts;
     }
 
-    public Set<ContactsDate> all() {
-        Set<ContactsDate> contacts = new HashSet<>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.xpath(".//tr[@name='entry']"));
         for (WebElement element: elements){
             List<WebElement> cells =element.findElements(By.tagName("td"));
