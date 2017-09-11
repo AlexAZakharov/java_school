@@ -1,16 +1,9 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.ContactsDate;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -31,7 +24,7 @@ public class ContactsModificationTests extends TestBase {
 
     @Test
     public void testContactModification() {
-
+        app.goTo().homePage();
         Contacts before = app.contact().all();
         ContactsDate contactModified = before.iterator().next();
         ContactsDate contact = new ContactsDate()
