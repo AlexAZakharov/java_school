@@ -57,6 +57,13 @@ public class ContactsHelper extends HelperBase {
         wd.switchTo().alert().accept();
     }
 
+    public void delete(ContactsDate contactDeleted) {
+        selectContactById(contactDeleted);
+        delete();
+        contactCash = null;
+        nh.homePage();
+    }
+
     public void gotoHomePage() {
         click(By.linkText("home page"));
     }
@@ -85,9 +92,16 @@ public class ContactsHelper extends HelperBase {
         creation();
         fillForm(contacts,b);
         submitCreation();
+        contactCash = null;
         gotoHomePage();
     }
-
+    public void modify(ContactsDate contact) {
+        initModification(contact);
+        fillForm(contact,false);
+        submitModification();
+        contactCash = null;
+        gotoHomePage();
+    }
     public boolean isThereAContact() {
         return isElementPresent(By.xpath(".//*[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
@@ -116,7 +130,7 @@ public class ContactsHelper extends HelperBase {
         if(contactCash != null){
             return new Contacts(contactCash);
         }
-        Contacts contacts = new Contacts();
+        contactCash = new Contacts();
         List<WebElement> elements = wd.findElements(By.xpath(".//tr[@name='entry']"));
         for (WebElement element: elements){
             List<WebElement> cells =element.findElements(By.tagName("td"));
@@ -125,9 +139,9 @@ public class ContactsHelper extends HelperBase {
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             ContactsDate contact = new ContactsDate()
                     .withId(id).withLastname(lastname).withFirstname(firstname);
-            contacts.add(contact);
+            contactCash.add(contact);
         }
-        return contacts;
+        return contactCash;
     }
 
 }

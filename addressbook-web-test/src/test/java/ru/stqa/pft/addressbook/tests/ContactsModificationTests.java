@@ -32,11 +32,11 @@ public class ContactsModificationTests extends TestBase {
                 .withMiddlename("A1").withLastname("Alexandr").withNickname("WaveLW").withFirstname("Zakharov")
                 .withCompany("Company1").withAddress("address2").withEmail("e-mail@mail.ru")
                 .withAddress2("address3").withGroup("test1").withHome("Home1");
-        app.contact().initModification(contactModified);
-        app.contact().fillForm(contact,false);
-        app.contact().submitModification();
+        app.contact().modify(contact);
         Contacts after = app.contact().all();
         assertEquals(after.size(),before.size());
         assertThat(after, equalTo(before.without(contactModified).withAdded(contact)));
     }
+
+
 }
