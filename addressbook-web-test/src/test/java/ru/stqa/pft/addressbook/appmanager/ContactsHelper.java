@@ -96,7 +96,7 @@ public class ContactsHelper extends HelperBase {
         return wd.findElements(By.xpath(".//*[@name='selected[]']")).size();
     }
 
-    public List<ContactsDate> list() {
+  /*  public List<ContactsDate> list() {
        List<ContactsDate> contacts = new ArrayList<ContactsDate>();
        List<WebElement> elements = wd.findElements(By.xpath(".//tr[@name='entry']"));
        for (WebElement element: elements){
@@ -109,9 +109,13 @@ public class ContactsHelper extends HelperBase {
             contacts.add(contact);
         }
         return contacts;
-    }
+    }*/
+  private Contacts contactCash = null;
 
     public Contacts all() {
+        if(contactCash != null){
+            return new Contacts(contactCash);
+        }
         Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.xpath(".//tr[@name='entry']"));
         for (WebElement element: elements){
