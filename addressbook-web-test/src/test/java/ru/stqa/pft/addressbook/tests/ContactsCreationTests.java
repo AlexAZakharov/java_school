@@ -7,8 +7,6 @@ import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.ContactsDate;
 import ru.stqa.pft.addressbook.model.GroupDate;
 
-import java.util.Set;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -37,9 +35,8 @@ public class ContactsCreationTests extends TestBase {
         app.contact().submitCreation();
         app.contact().gotoHomePage();*/
         app.contact().createContact(cd,true);
-
+        assertThat(app.contact().count(),equalTo(before.size()+1));
         Contacts after = app.contact().all();
-        assertThat(after.size(),equalTo(before.size()+1));
         assertThat(after, equalTo(before.withAdded(
                 cd.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
     }
