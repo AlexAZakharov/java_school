@@ -12,6 +12,24 @@ public class ContactsDate {
     private String email;
     private String address2;
     private String group;
+    private String homePhon;
+    private String mobilePhon;
+    private String workPhon;
+
+    public ContactsDate withHomePhon(String homePhon) {
+        this.homePhon = homePhon;
+        return this;
+    }
+
+    public ContactsDate withMobilePhon(String mobilePhon) {
+        this.mobilePhon = mobilePhon;
+        return this;
+    }
+
+    public ContactsDate withWorkPhon(String workPhon) {
+        this.workPhon = workPhon;
+        return this;
+    }
 
     public ContactsDate withId(int id) {
         this.id = id;
@@ -109,6 +127,18 @@ public class ContactsDate {
 
     public String getGroup() {
         return group;
+    }
+
+    public String getHomePhon() {
+        return homePhon;
+    }
+
+    public String getMobilePhon() {
+        return mobilePhon;
+    }
+
+    public String getWorkPhon() {
+        return workPhon;
     }
 
     @Override
