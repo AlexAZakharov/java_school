@@ -138,8 +138,9 @@ public class ContactsHelper extends HelperBase {
             String lastname = cells.get(1).getText();
             String  allPhones = cells.get(5).getText();
             String  allEmails = cells.get(4).getText();
+            String  address = cells.get(3).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            ContactsDate contact = new ContactsDate().withId(id).withLastname(lastname)
+            ContactsDate contact = new ContactsDate().withId(id).withLastname(lastname).withAddress(address)
                     .withFirstname(firstname).withAllPhones(allPhones).withAllEmails(allEmails);
             contactCash.add(contact);
         }
@@ -156,8 +157,9 @@ public class ContactsHelper extends HelperBase {
         String email = wd.findElement(By.name("email")).getAttribute("value");
         String email2 = wd.findElement(By.name("email2")).getAttribute("value");
         String email3 = wd.findElement(By.name("email3")).getAttribute("value");
+        String address = wd.findElement(By.name("address")).getAttribute("value");
         nh.homePage();
-        return new ContactsDate().withFirstname(firstname).withLastname(lastname).withHomePhon(home)
+        return new ContactsDate().withFirstname(firstname).withLastname(lastname).withHomePhon(home).withAddress(address)
                 .withMobilePhon(mobile).withWorkPhon(work).withEmail(email).withEmail2(email2).withEmail3(email3);
     }
 }
