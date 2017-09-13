@@ -10,11 +10,35 @@ public class ContactsDate {
     private String address;
     private String home;
     private String email;
+    private String email2;
+    private String email3;
     private String address2;
     private String group;
     private String homePhon;
     private String mobilePhon;
     private String workPhon;
+    private String allPhones;
+    private String allEmails;
+
+    public ContactsDate withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+
+    public ContactsDate withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
+
+    public ContactsDate withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
+        return this;
+    }
+
+    public ContactsDate withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
 
     public ContactsDate withHomePhon(String homePhon) {
         this.homePhon = homePhon;
@@ -141,6 +165,21 @@ public class ContactsDate {
         return workPhon;
     }
 
+    public String getAllPhones() {
+        return allPhones;
+    }
+
+    public String getEmail2() {
+        return email2;
+    }
+
+    public String getEmail3() {
+        return email3;
+    }
+
+    public String getAllEmails() {
+        return allEmails;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -169,5 +208,6 @@ public class ContactsDate {
                 ", firstname='" + firstname + '\'' +
                 '}';
     }
+
 
 }
