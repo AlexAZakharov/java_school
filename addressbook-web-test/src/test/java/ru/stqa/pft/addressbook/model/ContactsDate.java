@@ -1,5 +1,9 @@
 package ru.stqa.pft.addressbook.model;
 
+import sun.text.resources.cldr.to.FormatData_to;
+
+import java.io.File;
+
 public class ContactsDate {
     private int id= 0;
     private String middlename;
@@ -19,6 +23,12 @@ public class ContactsDate {
     private String workPhon;
     private String allPhones;
     private String allEmails;
+    private File photo;
+
+    public ContactsDate withPhoto(File photo) {
+        this.photo = photo;
+        return this;
+    }
 
     public ContactsDate withEmail2(String email2) {
         this.email2 = email2;
@@ -180,6 +190,11 @@ public class ContactsDate {
     public String getAllEmails() {
         return allEmails;
     }
+
+    public File getPhoto() {
+        return photo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

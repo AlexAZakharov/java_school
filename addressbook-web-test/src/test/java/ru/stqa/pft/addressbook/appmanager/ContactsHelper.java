@@ -36,6 +36,7 @@ public class ContactsHelper extends HelperBase {
       //  type(By.name("phone2"),contactsDate.getHome());
         type(By.name("email"),contactsDate.getEmail());
         type(By.name("address2"),contactsDate.getAddress2());
+        attach(By.name("photo"),contactsDate.getPhoto());
     }
 
     public void creation() {
