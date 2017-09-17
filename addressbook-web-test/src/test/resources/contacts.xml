@@ -1,0 +1,82 @@
+<list>
+  <group>
+    <middlename>A 0</middlename>
+    <lastname>Ivan 0</lastname>
+    <nickname>gaz 0</nickname>
+    <firstname>Bobrov 0</firstname>
+    <company>Company 0</company>
+    <address>Address 0</address>
+    <home>home 0</home>
+    <email>Email(0)</email>
+    <email2>Email2(0)</email2>
+    <email3>Email3(0)</email3>
+    <address2>Address2(0)</address2>
+    <homePhon>777 0</homePhon>
+    <mobilePhon>321 0</mobilePhon>
+    <workPhon>1230</workPhon>
+  </group>
+  <group>
+    <middlename>A 1</middlename>
+    <lastname>Ivan 1</lastname>
+    <nickname>gaz 1</nickname>
+    <firstname>Bobrov 1</firstname>
+    <company>Company 1</company>
+    <address>Address 1</address>
+    <home>home 1</home>
+    <email>Email(1)</email>
+    <email2>Email2(1)</email2>
+    <email3>Email3(1)</email3>
+    <address2>Address2(1)</address2>
+    <homePhon>777 1</homePhon>
+    <mobilePhon>321 1</mobilePhon>
+    <workPhon>1231</workPhon>
+  </group>
+  <group>
+    <middlename>A 2</middlename>
+    <lastname>Ivan 2</lastname>
+    <nickname>gaz 2</nickname>
+    <firstname>Bobrov 2</firstname>
+    <company>Company 2</company>
+    <address>Address 2</address>
+    <home>home 2</home>
+    <email>Email(2)</email>
+    <email2>Email2(2)</email2>
+    <email3>Email3(2)</email3>
+    <address2>Address2(2)</address2>
+    <homePhon>777 2</homePhon>
+    <mobilePhon>321 2</mobilePhon>
+    <workPhon>1232</workPhon>
+  </group>
+  <group>
+    <middlename>A 3</middlename>
+    <lastname>Ivan 3</lastname>
+    <nickname>gaz 3</nickname>
+    <firstname>Bobrov 3</firstname>
+    <company>Company 3</company>
+    <address>Address 3</address>
+    <home>home 3</home>
+    <email>Email(3)</email>
+    <email2>Email2(3)</email2>
+    <email3>Email3(3)</email3>
+    <address2>Address2(3)</address2>
+    <homePhon>777 3</homePhon>
+    <mobilePhon>321 3</mobilePhon>
+    <workPhon>1233</workPhon>
+  </group>
+  <group>
+    <middlename>A 4</middlename>
+    <lastname>Ivan 4</lastname>
+    <nickname>gaz 4</nickname>
+    <firstname>Bobrov 4</firstname>
+    <company>Company 4</company>
+    <address>Address 4</address>
+    <home>home 4</home>
+    <email>Email(4)</email>
+    <email2>Email2(4)</email2>
+    <email3>Email3(4)</email3>
+    <address2>Address2(4)</address2>
+    <homePhon>777 4</homePhon>
+    <mobilePhon>321 4</mobilePhon>
+    <workPhon>1234</workPhon>
+  </group>
+</list>

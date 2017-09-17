@@ -1,10 +1,13 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import sun.text.resources.cldr.to.FormatData_to;
 
 import java.io.File;
-
+@XStreamAlias("contact")
 public class ContactsDate {
+    @XStreamOmitField
     private int id= 0;
     private String middlename;
     private String lastname;
