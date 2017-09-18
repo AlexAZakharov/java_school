@@ -5,8 +5,6 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.thoughtworks.xstream.XStream;
 import ru.stqa.pft.addressbook.model.ContactsDate;
-import ru.stqa.pft.addressbook.model.GroupDate;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -98,6 +96,8 @@ public class ContactsDataGenerators {
                     .withHomePhon(String.format("777 %s",i))
                     .withMobilePhon(String.format("321 %s",i))
                     .withWorkPhon(String.format("123%s",i))
+                    .withGroup("test1")
+                    .withPhoto(new File("src/test/resources/i.jpg"))
             );
         }
         return contacts;
