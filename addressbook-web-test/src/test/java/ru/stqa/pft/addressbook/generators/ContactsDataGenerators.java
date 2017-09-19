@@ -50,32 +50,32 @@ public class ContactsDataGenerators {
         XStream xstream =new XStream();
         xstream.processAnnotations(ContactsDate.class);
         String xml = xstream.toXML(contacts);
-        Writer writer = new FileWriter(file);
-        writer.write(xml);
-        writer.close();
+        try (Writer writer = new FileWriter(file)){
+            writer.write(xml);
+        }
     }
 
     private void saveAsCsv(List<ContactsDate> contacts, File file) throws IOException {
-        Writer writer = new FileWriter(file);
-        for (ContactsDate contact: contacts){
-            writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n"
-                    ,contact.getMiddlename()
-                    ,contact.getLastname()
-                    ,contact.getNickname()
-                    ,contact.getFirstname()
-                    ,contact.getCompany()
-                    ,contact.getAddress()
-                    ,contact.getHome()
-                    ,contact.getEmail()
-                    ,contact.getEmail2()
-                    ,contact.getEmail3()
-                    ,contact.getAddress2()
-                    ,contact.getHomePhon()
-                    ,contact.getMobilePhon()
-                    ,contact.getWorkPhon()
-            ));
+        try (Writer writer = new FileWriter(file)) {
+            for (ContactsDate contact : contacts) {
+                writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n"
+                        , contact.getMiddlename()
+                        , contact.getLastname()
+                        , contact.getNickname()
+                        , contact.getFirstname()
+                        , contact.getCompany()
+                        , contact.getAddress()
+                        , contact.getHome()
+                        , contact.getEmail()
+                        , contact.getEmail2()
+                        , contact.getEmail3()
+                        , contact.getAddress2()
+                        , contact.getHomePhon()
+                        , contact.getMobilePhon()
+                        , contact.getWorkPhon()
+                ));
+            }
         }
-        writer.close();
     }
 
     private  List<ContactsDate> generatorsContact(int count) {
