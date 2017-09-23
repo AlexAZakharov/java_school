@@ -7,11 +7,12 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.model.ContactsDate;
 import ru.stqa.pft.addressbook.model.GroupDate;
 
 import java.util.List;
 
-public class HbConetctionTest {
+public class HbConectionTestContacts {
     private SessionFactory sessionFactory;
 
     @BeforeClass
@@ -35,9 +36,9 @@ public class HbConetctionTest {
     public void testHbConection(){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<GroupDate> result = session.createQuery( "from GroupDate" ).list();
-        for ( GroupDate group : result ) {
-            System.out.println(group);
+        List<ContactsDate> result = session.createQuery( "from ContactsDate where deprecated='0000-00-00'" ).list();
+        for ( ContactsDate contacts :  result ) {
+            System.out.println(contacts);
         }
         session.getTransaction().commit();
         session.close();
