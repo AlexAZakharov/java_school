@@ -20,7 +20,7 @@ public class Contacts extends ForwardingSet<ContactsDate> {
     }
 
     public Contacts(Collection<ContactsDate> contacts) {
-        this.delegate =  new HashSet<ContactsDate>();
+        this.delegate =  new HashSet<ContactsDate>(contacts);
     }
 
     @Override

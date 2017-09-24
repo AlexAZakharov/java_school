@@ -60,7 +60,7 @@ public class ContactsDate {
     private String allEmails;
     @Column(name="photo")
     @Type(type = "text")
-    private String photo;
+    private String photo="src/test/resources/i.jpg";
 
     public ContactsDate withPhoto(File photo) {
         this.photo = photo.getPath();
