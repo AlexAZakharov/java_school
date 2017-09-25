@@ -221,18 +221,6 @@ public class ContactsDate {
         return email2;
     }
 
-    public String getEmail3() {
-        return email3;
-    }
-
-    public String getAllEmails() {
-        return allEmails;
-    }
-
-    public File getPhoto() {
-        return new File(photo);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -247,13 +235,7 @@ public class ContactsDate {
         if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
         if (company != null ? !company.equals(that.company) : that.company != null) return false;
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
-        if (email3 != null ? !email3.equals(that.email3) : that.email3 != null) return false;
-        if (address2 != null ? !address2.equals(that.address2) : that.address2 != null) return false;
-        if (homePhon != null ? !homePhon.equals(that.homePhon) : that.homePhon != null) return false;
-        if (mobilePhon != null ? !mobilePhon.equals(that.mobilePhon) : that.mobilePhon != null) return false;
-        return workPhon != null ? workPhon.equals(that.workPhon) : that.workPhon == null;
+        return email != null ? email.equals(that.email) : that.email == null;
     }
 
     @Override
@@ -266,13 +248,19 @@ public class ContactsDate {
         result = 31 * result + (company != null ? company.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (email2 != null ? email2.hashCode() : 0);
-        result = 31 * result + (email3 != null ? email3.hashCode() : 0);
-        result = 31 * result + (address2 != null ? address2.hashCode() : 0);
-        result = 31 * result + (homePhon != null ? homePhon.hashCode() : 0);
-        result = 31 * result + (mobilePhon != null ? mobilePhon.hashCode() : 0);
-        result = 31 * result + (workPhon != null ? workPhon.hashCode() : 0);
         return result;
+    }
+
+    public String getEmail3() {
+        return email3;
+    }
+
+    public String getAllEmails() {
+        return allEmails;
+    }
+
+    public File getPhoto() {
+        return new File(photo);
     }
 
     @Override
