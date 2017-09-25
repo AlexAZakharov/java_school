@@ -241,15 +241,37 @@ public class ContactsDate {
         ContactsDate that = (ContactsDate) o;
 
         if (id != that.id) return false;
+        if (middlename != null ? !middlename.equals(that.middlename) : that.middlename != null) return false;
         if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
-        return firstname != null ? firstname.equals(that.firstname) : that.firstname == null;
+        if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) return false;
+        if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
+        if (company != null ? !company.equals(that.company) : that.company != null) return false;
+        if (address != null ? !address.equals(that.address) : that.address != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
+        if (email3 != null ? !email3.equals(that.email3) : that.email3 != null) return false;
+        if (address2 != null ? !address2.equals(that.address2) : that.address2 != null) return false;
+        if (homePhon != null ? !homePhon.equals(that.homePhon) : that.homePhon != null) return false;
+        if (mobilePhon != null ? !mobilePhon.equals(that.mobilePhon) : that.mobilePhon != null) return false;
+        return workPhon != null ? workPhon.equals(that.workPhon) : that.workPhon == null;
     }
 
     @Override
     public int hashCode() {
         int result = id;
+        result = 31 * result + (middlename != null ? middlename.hashCode() : 0);
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+        result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
         result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
+        result = 31 * result + (company != null ? company.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (email2 != null ? email2.hashCode() : 0);
+        result = 31 * result + (email3 != null ? email3.hashCode() : 0);
+        result = 31 * result + (address2 != null ? address2.hashCode() : 0);
+        result = 31 * result + (homePhon != null ? homePhon.hashCode() : 0);
+        result = 31 * result + (mobilePhon != null ? mobilePhon.hashCode() : 0);
+        result = 31 * result + (workPhon != null ? workPhon.hashCode() : 0);
         return result;
     }
 
