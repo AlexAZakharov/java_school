@@ -25,10 +25,10 @@ public class DbHelper {
     
     }
 
-    public Groups groups (){
+    public Groups groups(String where){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<GroupDate> result = session.createQuery( "from GroupDate" ).list();
+        List<GroupDate> result = session.createQuery("from GroupDate " + where).list();
         session.getTransaction().commit();
         session.close();
         return new Groups(result);

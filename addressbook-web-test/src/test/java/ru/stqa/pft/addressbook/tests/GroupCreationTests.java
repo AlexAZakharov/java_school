@@ -36,10 +36,10 @@ public class GroupCreationTests extends TestBase {
     @Test(dataProvider = "validGroups")
     public void testsGroupCreation(GroupDate gd) {
         app.goTo().groupPage();
-        Groups before = app.db().groups();
+        Groups before = app.db().groups("");
         app.group().create(gd);
         assertThat(app.group().count(),equalTo(before.size()+1));
-        Groups after = app.db().groups();
+        Groups after = app.db().groups("");
         assertThat(after, equalTo(
                 before.withAdded(gd.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
         verifyGroupListInUi();

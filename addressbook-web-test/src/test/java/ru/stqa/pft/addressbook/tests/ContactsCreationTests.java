@@ -42,7 +42,8 @@ public class ContactsCreationTests extends TestBase {
     public void ensurePreconditions(){
         app.goTo().homePage();
         GroupDate gd=new GroupDate().withName("test1").withHeader("test3");
-        if (! app.group().groupExists(gd.getName())) {
+        //! app.group().groupExists(gd.getName())
+        if (app.db().groups("where group_name='"+gd.getName()+"'").size() ==0) {
             app.goTo().groupPage();
             app.group().create(gd);
         }
