@@ -7,7 +7,6 @@ import ru.stqa.pft.addressbook.model.GroupDate;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,6 +42,7 @@ public class GroupCreationTests extends TestBase {
         Groups after = app.db().groups();
         assertThat(after, equalTo(
                 before.withAdded(gd.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
+        verifyGroupListInUi();
     }
 
 }
