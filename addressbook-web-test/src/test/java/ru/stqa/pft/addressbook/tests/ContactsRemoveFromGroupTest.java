@@ -5,11 +5,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.ContactsDate;
 import ru.stqa.pft.addressbook.model.GroupDate;
-import ru.stqa.pft.addressbook.model.Groups;
 
-import java.security.acl.Group;
-
-public class ContactsAddtoGroupTets extends TestBase {
+public class ContactsRemoveFromGroupTest extends TestBase {
     @BeforeMethod
     public void ensurePreconditions(){
         app.goTo().homePage();
@@ -29,15 +26,12 @@ public class ContactsAddtoGroupTets extends TestBase {
     @Test
     public void testContacttsAddtoGroup (){
         app.goTo().homePage();
-        Contacts before = app.db().contacts();
-        ContactsDate contactAdded = before.iterator().next();
-        app.contact().selectContactById(contactAdded);
-        Groups gbefore = app.db().groups("");
-        GroupDate groupToAdded = gbefore.iterator().next();
-        app.contact().selectAddedGroup(groupToAdded);
-        app.contact().addtoGroup();
-        //реализовать проверку попал ли контакт в выбранную группу - через БД
-      // app.contact().gotoGroup();
-       // app.goTo().homePage();
+        app.contact().selectGroup();
+        Contacts before = app.db().contacts();//указать группу
+        ContactsDate contactRemoved = before.iterator().next();
+        app.contact().selectContactById(contactRemoved);
+        app.contact().removeContact();
+        Contacts after = app.db().contacts();//указать группу
+       // app.contact().gotoGroup(); можно опустить раз читаем напрямую из базы
     }
 }
