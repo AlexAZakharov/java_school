@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.Contacts;
@@ -8,16 +7,13 @@ import ru.stqa.pft.addressbook.model.ContactsDate;
 import ru.stqa.pft.addressbook.model.GroupDate;
 import ru.stqa.pft.addressbook.model.Groups;
 
-import java.io.IOException;
-import java.util.Iterator;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactsRemoveFromGroupTest extends TestBase {
 
     @DataProvider
-    public Iterator<Object[]> validGroup() {
+    private GroupDate validGroup() {
 
         Groups gb = app.db().groups("");
         GroupDate groupForContatcRemove =null;
@@ -55,6 +51,7 @@ public class ContactsRemoveFromGroupTest extends TestBase {
             groupForContatcRemove = groupToAdded;
         }
 
+        return groupForContatcRemove;
     }
 
 
