@@ -7,6 +7,8 @@ import sun.text.resources.cldr.to.FormatData_to;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -43,8 +45,14 @@ public class ContactsDate {
     @Column(name="address2")
     @Type(type = "text")
     private String address2;
-    @Transient
-    private String group;
+    /*@Transient
+    private String group;*/
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable (name="address_in_groups"
+            ,joinColumns = @JoinColumn(name="id")
+            ,inverseJoinColumns = @JoinColumn(name="group_id"))
+    private Set<GroupDate> groups = new HashSet<GroupDate>();
+
     @Column(name="home")
     @Type(type = "text")
     private String homePhon;
@@ -152,10 +160,11 @@ public class ContactsDate {
         return this;
     }
 
-    public ContactsDate withGroup(String group) {
+
+    /*  public ContactsDate withGroup(String group) {
         this.group = group;
         return this;
-    }
+    }*/
 
     public int getId() {
         return id;
@@ -197,9 +206,9 @@ public class ContactsDate {
         return address2;
     }
 
-    public String getGroup() {
+   /* public String getGroup() {
         return group;
-    }
+    }*/
 
     public String getHomePhon() {
         return homePhon;
@@ -219,6 +228,10 @@ public class ContactsDate {
 
     public String getEmail2() {
         return email2;
+    }
+
+    public Groups getGroups() {
+        return new Groups(groups);
     }
 
     @Override

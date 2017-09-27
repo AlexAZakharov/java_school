@@ -18,7 +18,7 @@ public class ContactsModificationTests extends TestBase {
             app.contact().createContact(new ContactsDate()
                     .withMiddlename("A").withLastname("Ivan").withNickname("WaveLW").withFirstname("Bobrov")
                     .withCompany("Company").withAddress("address").withEmail("e-mail@mail.ru")
-                    .withAddress2("address").withGroup("test1"),false);
+                    .withAddress2("address"),false);
         }
     }
 
@@ -31,7 +31,7 @@ public class ContactsModificationTests extends TestBase {
                 .withId(contactModified.getId())
                 .withMiddlename("A1").withLastname("Alexandr").withNickname("WaveLW").withFirstname("Zakharov")
                 .withCompany("Company1").withAddress("address2").withEmail("e-mail@mail.ru")
-                .withAddress2("address3").withGroup("test1").withHome("Home1");
+                .withAddress2("address3").withHome("Home1");
         app.contact().modify(contact);
         assertEquals(app.contact().count(),before.size());
         Contacts after = app.db().contacts();

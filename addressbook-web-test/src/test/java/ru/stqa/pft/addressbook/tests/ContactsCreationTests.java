@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.ContactsDate;
 import ru.stqa.pft.addressbook.model.GroupDate;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -52,7 +53,9 @@ public class ContactsCreationTests extends TestBase {
     @Test (dataProvider = "validContacts")
     public void testContactsCreation( ContactsDate cd) {
         app.goTo().homePage();
+        Groups groups = app.db().groups("");
         File photo = new File("src/test/resources/i.jpg");
+       // ContactsDate newContact = new ContactsDate()
         Contacts before = app.db().contacts();
         app.contact().createContact(cd,true);
         assertThat(app.contact().count(),equalTo(before.size()+1));

@@ -24,7 +24,7 @@ public class ContactsHelper extends HelperBase {
 
     public void fillForm(ContactsDate contactsDate, boolean creation) {
         if (creation){
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactsDate.getGroup());
+           // new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactsDate.getGroup());
         } else {
          //   Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
@@ -59,8 +59,17 @@ public class ContactsHelper extends HelperBase {
     public void selectContactById(ContactsDate contact) {
         wd.findElement(By.xpath(".//input[@value='"+contact.getId()+"']")).click();
     }
-    public void selectGroup() {
+    public void selectAddedGroup(GroupDate groupToAdded) {
+        new Select(wd.findElement(By.name("to_group")))
+                .selectByValue(String.valueOf(groupToAdded.getId()));
     }
+
+    public void selectGroup(GroupDate gd) {
+        new Select(wd.findElement(By.xpath(".//select[@name='group']")))
+                .selectByValue(String.valueOf(gd.getId()));
+
+    }
+
     public void initModification(ContactsDate contact){
         wd.findElement(By.xpath(".//a[@href='edit.php?id="+contact.getId()+"']")).click();
     }
@@ -171,8 +180,5 @@ public class ContactsHelper extends HelperBase {
                 .withMobilePhon(mobile).withWorkPhon(work).withEmail(email).withEmail2(email2).withEmail3(email3);
     }
 
-    public void selectAddedGroup(GroupDate groupToAdded) {
-        groupToAdded.getName();
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(groupToAdded.getName());
-    }
+
 }

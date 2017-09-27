@@ -9,6 +9,9 @@ import ru.stqa.pft.addressbook.model.Groups;
 
 import java.security.acl.Group;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class ContactsAddtoGroupTets extends TestBase {
     @BeforeMethod
     public void ensurePreconditions(){
@@ -31,13 +34,20 @@ public class ContactsAddtoGroupTets extends TestBase {
         app.goTo().homePage();
         Contacts before = app.db().contacts();
         ContactsDate contactAdded = before.iterator().next();
+        //Выбрал произвольный контак
         app.contact().selectContactById(contactAdded);
         Groups gbefore = app.db().groups("");
+        // произвольная группа
         GroupDate groupToAdded = gbefore.iterator().next();
+        // Создал множество контактов в выбранной группе до добавления
+        Contacts beforeContacts = groupToAdded.getContacts();
+        //выбрал произвльную группу
         app.contact().selectAddedGroup(groupToAdded);
         app.contact().addtoGroup();
-        //реализовать проверку попал ли контакт в выбранную группу - через БД
-      // app.contact().gotoGroup();
-       // app.goTo().homePage();
+        // создал множество контактов после обновления
+        Contacts afterContacts = groupToAdded.getContacts();
+        //реализовать проверку попал 
+        assertThat(afterContacts, equalTo(beforeContacts.withAdded(contactAdded)));
+
     }
 }

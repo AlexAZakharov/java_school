@@ -96,7 +96,7 @@ public class ContactsDataGenerators {
                     .withHomePhon(String.format("777 %s",i))
                     .withMobilePhon(String.format("321 %s",i))
                     .withWorkPhon(String.format("123%s",i))
-                    .withGroup("test1")
+                    //.withGroup("test1")
                     .withPhoto(new File("src/test/resources/i.jpg"))
             );
         }

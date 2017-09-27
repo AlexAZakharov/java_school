@@ -5,9 +5,13 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.ContactsDate;
 import ru.stqa.pft.addressbook.model.GroupDate;
+import ru.stqa.pft.addressbook.model.Groups;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactsRemoveFromGroupTest extends TestBase {
-    @BeforeMethod
+   /* @BeforeMethod
     public void ensurePreconditions(){
         app.goTo().homePage();
         if (app.db().groups("").size() ==0) {
@@ -21,17 +25,20 @@ public class ContactsRemoveFromGroupTest extends TestBase {
                     .withEmail("e-mail@mail.ru").withAddress2("address"),false);
         }
 
-    }
+    }*/
 
     @Test
-    public void testContacttsAddtoGroup (){
+    public void testContactsRemoveFromGroup (){
         app.goTo().homePage();
-        app.contact().selectGroup();
+        Groups gdbefore =app.db().groups("");
+        GroupDate gd =gdbefore.iterator().next();
+        app.contact().selectGroup(gd);
         Contacts before = app.db().contacts();//указать группу
         ContactsDate contactRemoved = before.iterator().next();
         app.contact().selectContactById(contactRemoved);
         app.contact().removeContact();
         Contacts after = app.db().contacts();//указать группу
-       // app.contact().gotoGroup(); можно опустить раз читаем напрямую из базы
+        assertThat(after, equalTo(before.without(contactRemoved)));
+
     }
 }
