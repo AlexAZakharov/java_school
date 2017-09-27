@@ -46,7 +46,7 @@ public class ContactsAddtoGroupTets extends TestBase {
         app.contact().addtoGroup();
         // создал множество контактов после обновления
         Contacts afterContacts = groupToAdded.getContacts();
-        //реализовать проверку попал 
+        //реализовать проверку попал
         assertThat(afterContacts, equalTo(beforeContacts.withAdded(contactAdded)));
 
     }
