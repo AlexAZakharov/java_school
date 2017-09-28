@@ -29,7 +29,7 @@ public class GroupDate {
     @Type(type = "text")
     private String footer;
 
-    @ManyToMany(mappedBy = "groups")
+    @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
     private Set<ContactsDate> contacts = new HashSet<ContactsDate>();
 
     public Contacts getContacts() {
