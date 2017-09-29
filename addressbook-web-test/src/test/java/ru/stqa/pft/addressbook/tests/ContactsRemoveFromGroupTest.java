@@ -14,17 +14,17 @@ public class ContactsRemoveFromGroupTest extends TestBase {
 
     @DataProvider
     public Object[][] validGroup() {
-        try (Groups gb = app.db().groups("")) {
-            GroupDate groupForContatcRemove = null;
+        Groups gb = app.db().groups("");
+        GroupDate groupForContatcRemove = null;
             //проходим по группам и ищем есть ли там добавленные контакты если есть то берем группу и выходит на сам тест
-            for (GroupDate group : gb) {
+        for (GroupDate group : gb) {
                 Contacts contacts = group.getContacts();
                 if (contacts.size() > 0) {
                     groupForContatcRemove = group;
                     return new Object[][]{new GroupDate[]{groupForContatcRemove}};
                 }
             }
-            if (groupForContatcRemove == null) {
+        if (groupForContatcRemove == null) {
                 //если нет в группах контактов то проверяем есть ли вообще группы и если нет создаем
                 if (app.db().groups("").size() == 0) {
                     app.goTo().groupPage();
@@ -50,9 +50,11 @@ public class ContactsRemoveFromGroupTest extends TestBase {
                 groupForContatcRemove = groupToAdded;
                 return new Object[][]{new GroupDate[]{groupForContatcRemove}};
             }
-
-        }
+        return new Object[0][];
     }
+
+
+
 
 
 
@@ -69,7 +71,8 @@ public class ContactsRemoveFromGroupTest extends TestBase {
         //удаляем из группы
         app.contact().removeContact();
         //создаем множество контактов выбранной группы после удаления
-        Contacts after = groupForContatcRemove.getContacts();
+        Groups groupp = app.db().groups(String.format("where group_id=%s",groupForContatcRemove.getId()));
+        Contacts after= groupp.iterator().next().getContacts();
         assertThat(after, equalTo(before.without(contactRemoved)));
 
     }
