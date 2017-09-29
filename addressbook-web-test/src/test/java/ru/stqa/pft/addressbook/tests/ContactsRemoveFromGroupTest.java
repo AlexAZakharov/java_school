@@ -13,45 +13,45 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactsRemoveFromGroupTest extends TestBase {
 
     @DataProvider
-    private GroupDate validGroup() {
+    public Object[][] validGroup() {
+        try (Groups gb = app.db().groups("")) {
+            GroupDate groupForContatcRemove = null;
+            //проходим по группам и ищем есть ли там добавленные контакты если есть то берем группу и выходит на сам тест
+            for (GroupDate group : gb) {
+                Contacts contacts = group.getContacts();
+                if (contacts.size() > 0) {
+                    groupForContatcRemove = group;
+                    return new Object[][]{new GroupDate[]{groupForContatcRemove}};
+                }
+            }
+            if (groupForContatcRemove == null) {
+                //если нет в группах контактов то проверяем есть ли вообще группы и если нет создаем
+                if (app.db().groups("").size() == 0) {
+                    app.goTo().groupPage();
+                    app.group().create(new GroupDate().withName("test1").withHeader("test3"));
+                }
+                //проверяем есть ли контакты, если нет то добавляем
+                if (app.db().contacts().size() == 0) {
+                    app.contact().createContact(new ContactsDate()
+                            .withMiddlename("A").withLastname("Ivan").withNickname("WaveLW")
+                            .withFirstname("Bobrov").withCompany("Company").withAddress("address")
+                            .withEmail("e-mail@mail.ru").withAddress2("address"), false);
+                }
+                app.goTo().homePage();
+                Contacts before = app.db().contacts();
+                ContactsDate contactAdded = before.iterator().next();
+                //Выбрал произвольный контак
+                app.contact().selectContactById(contactAdded);
+                Groups gbefore = app.db().groups("");
+                GroupDate groupToAdded = gbefore.iterator().next();
+                //выбрал произвльную группу
+                app.contact().selectAddedGroup(groupToAdded);
+                app.contact().addtoGroup();
+                groupForContatcRemove = groupToAdded;
+                return new Object[][]{new GroupDate[]{groupForContatcRemove}};
+            }
 
-        Groups gb = app.db().groups("");
-        GroupDate groupForContatcRemove =null;
-        //проходим по группам и ищем есть ли там добавленные контакты если есть то берем группу и выходит на сам тест
-        for (GroupDate group : gb) {
-            Contacts contacts = group.getContacts();
-            if (contacts.size() > 0) {
-                groupForContatcRemove = group;
-                break;
-            }
         }
-        if (groupForContatcRemove==null) {
-            //если нет в группах контактов то проверяем есть ли вообще группы и если нет создаем
-            if (app.db().groups("").size() == 0) {
-                app.goTo().groupPage();
-                app.group().create(new GroupDate().withName("test1").withHeader("test3"));
-            }
-            //проверяем есть ли контакты, если нет то добавляем
-            if (app.db().contacts().size() == 0) {
-                app.contact().createContact(new ContactsDate()
-                        .withMiddlename("A").withLastname("Ivan").withNickname("WaveLW")
-                        .withFirstname("Bobrov").withCompany("Company").withAddress("address")
-                        .withEmail("e-mail@mail.ru").withAddress2("address"), false);
-            }
-            app.goTo().homePage();
-            Contacts before = app.db().contacts();
-            ContactsDate contactAdded = before.iterator().next();
-            //Выбрал произвольный контак
-            app.contact().selectContactById(contactAdded);
-            Groups gbefore = app.db().groups("");
-            GroupDate groupToAdded = gbefore.iterator().next();
-            //выбрал произвльную группу
-            app.contact().selectAddedGroup(groupToAdded);
-            app.contact().addtoGroup();
-            groupForContatcRemove = groupToAdded;
-        }
-
-        return groupForContatcRemove;
     }
 
 
