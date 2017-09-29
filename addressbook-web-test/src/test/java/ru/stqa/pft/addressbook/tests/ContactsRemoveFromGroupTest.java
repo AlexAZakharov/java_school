@@ -63,7 +63,7 @@ public class ContactsRemoveFromGroupTest extends TestBase {
         app.goTo().homePage();
         app.contact().selectGroup(groupForContatcRemove);
         //создаем множество контактов из вбранной группы
-        Contacts before = groupForContatcRemove.getContacts();
+        Contacts before = app.db().groups(String.format("where group_id=%s",groupForContatcRemove.getId())).iterator().next().getContacts();
         //выбираем произвольный контакт из множества в группе
         ContactsDate contactRemoved = before.iterator().next();
         //выделяем контакт
@@ -71,8 +71,8 @@ public class ContactsRemoveFromGroupTest extends TestBase {
         //удаляем из группы
         app.contact().removeContact();
         //создаем множество контактов выбранной группы после удаления
-        Groups groupp = app.db().groups(String.format("where group_id=%s",groupForContatcRemove.getId()));
-        Contacts after= groupp.iterator().next().getContacts();
+       // Groups groupp = app.db().groups(String.format("where group_id=%s",groupForContatcRemove.getId()));
+        Contacts after= app.db().groups(String.format("where group_id=%s",groupForContatcRemove.getId())).iterator().next().getContacts();
         assertThat(after, equalTo(before.without(contactRemoved)));
 
     }
