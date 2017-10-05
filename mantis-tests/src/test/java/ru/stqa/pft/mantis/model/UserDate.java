@@ -20,7 +20,7 @@ public class UserDate {
     @Column(name="username")
     private String username;
     @Column(name="email")
-    @Type(type = "text")
+    //@Type(type = "longtext")
     private String email;
 
     public UserDate withId(int id) {

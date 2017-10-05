@@ -14,9 +14,10 @@ public class ControlHelper extends HelperBase {
 
     public void editUser(String username) {
         type(By.xpath(".//*[@id='username']"), username);
+        click(By.xpath(".//*[@id=\"manage-user-edit-form\"]/input[2]"));
     }
 
     public void resetPassword() {
-        click(By.xpath(".//*[@id='manage-user-reset-form'])"));
+        click(By.xpath("//*[@id=\"manage-user-reset-form\"]/fieldset/span/input"));
     }
 }
