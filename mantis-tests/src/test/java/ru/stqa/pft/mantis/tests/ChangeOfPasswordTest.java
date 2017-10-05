@@ -38,7 +38,7 @@ public class ChangeOfPasswordTest extends  TestBase {
         app.control().editUser(username);
         app.control().resetPassword();
         // тесты получают письмо
-        List<MailMessage> mailMessages =app.mail().waitForMail(2,30000);
+        List<MailMessage> mailMessages =app.mail().waitForMail(1,10000);
         // извлекаю ссылку для смены пароля
         String confermationLinK = findConfermationLinK(mailMessages, email);
         // пройти по ссылке и изменить пароль.
