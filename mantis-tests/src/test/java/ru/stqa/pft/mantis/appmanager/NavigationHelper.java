@@ -20,6 +20,6 @@ public class NavigationHelper extends HelperBase {
     }
 
     public void control() {
-        click(By.xpath(".//*[@id='sidebar']/ul/li[6]/a/i"));
+        click(By.xpath(".//*[@id='sidebar']/ul/li[7]/a/i"));
     }
 }
