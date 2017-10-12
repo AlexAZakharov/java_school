@@ -25,6 +25,7 @@ public class ApplicationManager {
     private NavigationHelper navigationHelper;
     private ControlHelper controlHelper;
     private DbHelper dbHelper;
+    private SoapHelper soapHelper;
 
 
     public ApplicationManager(String browser)  {
@@ -93,6 +94,12 @@ public class ApplicationManager {
         return dbHelper;
     }
 
+    public SoapHelper soap(){
+        if(soapHelper==null){
+            soapHelper = new SoapHelper(this);
+        }
+        return soapHelper;
+    }
 
     public WebDriver getDriver() {
        if(wd==null){
