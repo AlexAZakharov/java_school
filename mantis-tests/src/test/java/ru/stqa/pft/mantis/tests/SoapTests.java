@@ -1,19 +1,15 @@
 package ru.stqa.pft.mantis.tests;
 
-        import biz.futureware.mantis.rpc.soap.client.MantisConnectLocator;
-        import biz.futureware.mantis.rpc.soap.client.MantisConnectPortType;
-        import biz.futureware.mantis.rpc.soap.client.ProjectData;
-        import org.testng.annotations.Test;
-        import ru.stqa.pft.mantis.model.Issue;
-        import ru.stqa.pft.mantis.model.Project;
+import org.testng.annotations.Test;
+import ru.stqa.pft.mantis.model.Issue;
+import ru.stqa.pft.mantis.model.Project;
 
-        import javax.xml.rpc.ServiceException;
-        import java.net.MalformedURLException;
-        import java.net.URL;
-        import java.rmi.RemoteException;
-        import java.util.Set;
+import javax.xml.rpc.ServiceException;
+import java.net.MalformedURLException;
+import java.rmi.RemoteException;
+import java.util.Set;
 
-        import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertEquals;
 
 public class SoapTests extends TestBase{
     @Test
